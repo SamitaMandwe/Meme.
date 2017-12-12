@@ -16,7 +16,10 @@ class MemeTableViewController: UIViewController,UITableViewDataSource,UITableVie
     
     @IBOutlet weak var tableView: UITableView!
     
-    var memes: [Meme] { return (UIApplication.shared.delegate as! AppDelegate).memes}
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var memes: [Meme] {
+        return appDelegate.memes
+    }
     
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +32,16 @@ class MemeTableViewController: UIViewController,UITableViewDataSource,UITableVie
         let memeEditor = storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         present(memeEditor, animated: true, completion: nil)
     }
-    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    //MARK : Swipe left to delete a Meme
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+           appDelegate.memes.remove(at: indexPath.row)
+           tableView.reloadData()
+        }
+    }
     // MARK: Table View Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.memes.count

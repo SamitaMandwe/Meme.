@@ -1,5 +1,5 @@
 //
-//  MemeStructEditor.swift
+//  Meme.swift
 //  MEME Part-1
 //
 //  Created by Samita Mandwe on 11/1/17.

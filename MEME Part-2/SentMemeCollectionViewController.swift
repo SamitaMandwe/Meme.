@@ -43,11 +43,6 @@ class SentMemeCollectionViewController:UICollectionViewController,UICollectionVi
         present(memeEditor, animated: true, completion: nil)
     }
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        
-        return 1
-    }
     // MARK: Collection View Data Source
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

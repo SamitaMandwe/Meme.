@@ -27,7 +27,7 @@ class MemeEditorViewController: MemeTextAttribute,UIImagePickerControllerDelegat
         super.viewDidLoad()
         prepareTextFields(textField: topTextField, text: "TOP")
         prepareTextFields(textField: bottomTextField, text:"Bottom")
-        shareButton.isEnabled = true
+        shareButton.isEnabled = false
         
     }
     
@@ -35,6 +35,7 @@ class MemeEditorViewController: MemeTextAttribute,UIImagePickerControllerDelegat
         super.viewWillAppear(true)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
+    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,6 +84,7 @@ class MemeEditorViewController: MemeTextAttribute,UIImagePickerControllerDelegat
         if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage{
             imageView.contentMode = .scaleAspectFit
             imageView.image = imagePicked
+            shareButton.isEnabled = true
         }
         dismiss(animated: true, completion: nil)
     }
